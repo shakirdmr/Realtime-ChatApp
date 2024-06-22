@@ -1,5 +1,6 @@
 // const dotenv  = require("dotenv").config();
 import dotenv from "dotenv";
+import cors from 'cors';
 import cookieParser from "cookie-parser";
 dotenv.config();
 import express from "express";
@@ -10,10 +11,20 @@ import usersRoutes from './routes/users.route.js';
 import connectToMongoDB from "./db/connectToMongoDB.js";
 
 const app = express()
+app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+
+
+
+
 //to pasrse incoming request with JSON payload
 app.use(express.json());
 // Use cookie-parser middleware
 app.use(cookieParser());
+
+         
+// Enable CORS for all requests from http://localhost:3000
+
+
 
 const PORT = process.env.PORT || 8800;
 

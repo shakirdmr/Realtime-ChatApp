@@ -3,21 +3,33 @@ import UserModel from "../models/user.model.js";
 import bcrypt from "bcrypt";
 
 export const login = async (req, res) => {
-  const { username, password } = req.body;
+  try {
+    const { username, password } = req.body;
 
-  const doesUserExsist = await UserModel.findOne({ username: username });
+    const doesUserExsist = await UserModel.findOne({ username: username });
 
-  if (!doesUserExsist)
-    res.send(400).json({ result: false, message: "Username is Invalid" });
+    if (!doesUserExsist)
+      return res
+        .status(200)
+        .json({ result: false, message: "Username is Invalid" });
 
-  const isPasswordCorrect = bcrypt.compare(password, doesUserExsist.password);
+    const isPasswordCorrect = await bcrypt.compare(
+      password,
+      doesUserExsist.password
+    );
 
-  if (!isPasswordCorrect)
-    res.send(400).json({ result: false, messgae: "PASSWORD IS INORRECT" });
+    if (!isPasswordCorrect)
+      return res
+        .status(200)
+        .json({ result: false, message: "PASSWORD IS INORRECT" });
 
-  await generateTokenAndSetCookie(doesUserExsist._id, res);
+    await generateTokenAndSetCookie(doesUserExsist._id, res);
 
-  return res.status(200).send({ success: true, message: doesUserExsist });
+    doesUserExsist.password = null;
+    return res.status(200).json({ result: true, message: doesUserExsist });
+  } catch (error) {
+    return res.status(500).json({ result: false, message: error.message });
+  }
 };
 
 export const signUp = async (req, res) => {
@@ -58,26 +70,29 @@ export const signUp = async (req, res) => {
     res
       .status(400)
       .send({ success: false, message: "ERROR CREATING NEW USER" + error });
-
-    console.log("ERROR CREATING NEW USER ", error);
   }
 };
 
 export const logout = (req, res) => {
+  try {
+    if (req.cookies.jwt) {
 
-  if (req.cookies.jwt) {
+      console.log("\n\n\n req.cookies.jwt = ")
+      console.log(req.cookies.jwt)
 
-    try {
+      
       res.cookie("jwt", "", { maxAge: 0 });
       res
         .status(200)
         .json({ result: true, message: "Logged Out Successfully" });
-    } catch (error) {
-      res.status(400).json({ result: false, message: "Error " + error });
-    }
+    } else
+      res
+        .status(200)
+        .json({
+          result: false,
+          message: "NO COOKIE SET ( Already Logged Out )",
+        });
+  } catch (error) {
+    res.status(400).json({ result: false, message: "Error " + error });
   }
-  else
-  res.status(400).json({ result: false, message: "Already Logged Out" });
-
-
 };

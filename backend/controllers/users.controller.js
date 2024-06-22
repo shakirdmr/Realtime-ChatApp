@@ -6,10 +6,10 @@ export const AllUsersForHomeScreen = async (req, res) => {
 
 
   try {
-    const AllUsers = await UserModel.find({ _id: { $ne: myId } });
-    res.status(200).json({ result: true, message: AllUsers });
+    const AllUsers = await UserModel.find({ _id: { $ne: myId } }).select("-password");
+    return res.status(200).json({ result: true, message: AllUsers });
   } catch (error) {
-    res.status(400).json({
+    return res.status(200).json({
       result: false,
       message: "Error in user.controller.js - " + error,
     });
