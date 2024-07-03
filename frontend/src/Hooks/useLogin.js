@@ -39,10 +39,10 @@ const useLogin = () => {
 
         localStorage.setItem(
           "chat-user",
-          JSON.stringify(response.data.message._id)
+          JSON.stringify(response.data.message)
         );
 
-        setAuthUser(response.data.message._id);
+         setAuthUser(response.data.message);
 
 
       } 

@@ -43,10 +43,10 @@ export const sendMessage = async (req, res)=>{
                      await isConverstaionMade.save();  // Save the updated conversation
                 }
 
-            res.status(200).json({result:true, message:"ADDED THE CONVOERSATION"});
+            res.status(200).json({result:true, message:newMessageObj});
 
     } catch (error) {
-        res.status(400).json({result:false, message:"ERROR IS "+error});
+        res.status(200).json({result:false, message:"ERROR IS "+error});
         
     }  
 

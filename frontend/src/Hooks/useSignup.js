@@ -45,11 +45,11 @@ const useSignup = () => {
 
         localStorage.setItem(
           "chat-user",
-          JSON.stringify(response.data.message._id)
+          JSON.stringify(response.data.message)
         );
 
-        console.log(response)
-        setAuthUser(response.data.message._id);
+        
+        setAuthUser(response.data.message);
 
 
       } else toast.error(response.data.message);

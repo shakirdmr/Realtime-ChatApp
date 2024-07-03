@@ -11,8 +11,8 @@ const Conversations = () => {
        
         {loading ? <span className="loading loading-spinner"></span> : null}
 
-        {conversations.map((convo) => {
-          return <Conversation key={convo._id} convo={convo} />;
+        {conversations.map( (convoElement, index) => {
+          return <Conversation key={convoElement._id} convo={convoElement}  index={index}/>;
         })}
 
       </div>

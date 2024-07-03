@@ -25,10 +25,12 @@ export const login = async (req, res) => {
 
     await generateTokenAndSetCookie(doesUserExsist._id, res);
 
-    doesUserExsist.password = null;
+    doesUserExsist.password = undefined;
+
+
     return res.status(200).json({ result: true, message: doesUserExsist });
   } catch (error) {
-    return res.status(500).json({ result: false, message: error.message });
+    return res.status(400).json({ result: false, message: error.message });
   }
 };
 
@@ -62,6 +64,9 @@ export const signUp = async (req, res) => {
       profilePic: gender === "male" ? malePic : femalePic,
     });
     await newUser.save();
+
+     newUser.password = undefined;
+
 
     await generateTokenAndSetCookie(newUser._id, res);
 

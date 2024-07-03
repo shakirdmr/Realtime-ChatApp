@@ -6,6 +6,7 @@ export const AuthContext = createContext();
 // STEP 2
 export const AuthContextProvider = ({ children }) => {
     
+  console.log("CALLLLEDD CONTEXTAPI")
     const [authUser, setAuthUser] = useState(JSON.parse(localStorage.getItem("chat-user")) || null);
 
     return <AuthContext.Provider value={{ authUser, setAuthUser }}>
