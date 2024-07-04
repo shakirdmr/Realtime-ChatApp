@@ -1,4 +1,5 @@
 import { useAuthContext } from "../../context/AuthContext.jsx";
+import { extractTime } from "../../utils/extractTime.js";
 import useConversation from "../../zustand/useConversation.js";
 
 const Message = ({ message }) => {
@@ -7,7 +8,7 @@ const Message = ({ message }) => {
 
 	const fromMe = message.senderId === authUser._id;
 
-	// const formattedTime = extractTime(message.createdAt);
+	const formattedTime = extractTime(message.createdAt);
 	
 	const chatClassName = fromMe ? "chat-end" : "chat-start";
 	const profilePic = fromMe ? authUser.profilePic : selectedConversation?.profilePic;
@@ -27,7 +28,7 @@ const Message = ({ message }) => {
 			
 			<div className={`chat-bubble text-white ${bubbleBgColor} ${shakeClass} pb-2`}>{message.message}</div>
 
-			<div className='chat-footer opacity-50 text-xs flex gap-1 items-center'>{message.createdAt}</div>
+			<div className='chat-footer opacity-50 text-xs flex gap-1 items-center'>{formattedTime}</div>
 		</div>
 	);
 };

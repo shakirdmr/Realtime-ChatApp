@@ -3,22 +3,25 @@ import { AuthContext } from "../../context/AuthContext";
 import useConversation from "../../zustand/useConversation";
 import MessageInput from "./MessageInput";
 import Messages from "./Messages";
-import {useContext, useEffect} from 'react';
+import {useContext, useEffect, useRef} from 'react';
 
 
 const MessageContainer = (req, res) => {
+
 
 	const {selectedConversation, setSelectedConversation, messages, setMessages} = useConversation();
 
 	const {authUser, setAuthUser} = useContext(AuthContext);
 	
 	useEffect(() => {
-	  
+
 		// THIs IS A CLEANUP FUNCtIOn (runs on unmount of the current view)
 	  return () => {
 		setSelectedConversation(null);
 	  }
 	}, [setSelectedConversation])
+	
+
 	
 	
 	return (

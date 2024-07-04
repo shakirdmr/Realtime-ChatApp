@@ -24,13 +24,15 @@ const useGetMessages = () => {
 
             if(!response.data.result)
                 {
-                    toast.error("we useGetMessage.js error - "+response.data.message);
+                    // toast.error("we useGetMessage.js error - "+response.data.message);
+                    setMessages([]);
+
                     return;
                 }
             
             setMessages(response.data.message);
 
-            toast.success("GOT ALL MESSAGES");
+            // toast.success("GOT ALL MESSAGES");
             
         } catch (error) {
             toast.error("useGetMessage.js error - "+error.message);

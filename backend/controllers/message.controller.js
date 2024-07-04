@@ -9,7 +9,7 @@ export const sendMessage = async (req, res)=>{
 
 
     try {
-            const isConverstaionMade  = await ConversationModel.findOne({
+            let isConverstaionMade  = await ConversationModel.findOne({
                 participants:{
                     $all: [sender, reciever]
                 }
@@ -46,7 +46,7 @@ export const sendMessage = async (req, res)=>{
             res.status(200).json({result:true, message:newMessageObj});
 
     } catch (error) {
-        res.status(200).json({result:false, message:"ERROR IS "+error});
+        res.status(400).json({result:false, message:"ERROR IS "+error});
         
     }  
 

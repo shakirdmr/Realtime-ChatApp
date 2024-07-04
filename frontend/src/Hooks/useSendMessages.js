@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 const useSendMessages = () => {
   
     const [loading, setLoading] = useState(false);
-    const { messages = [], setMessages, selectedConversation } = useConversation();
+    const { messages , setMessages, selectedConversation } = useConversation();
 
     const sendMessage = async (message)=>{
 
@@ -15,7 +15,7 @@ const useSendMessages = () => {
         
         try {
 
-            const response = await axios.post(`api/message/send/${selectedConversation._id}`, {message}, {withCredentials:true});
+            const response = await axios.post("api/message/send/"+selectedConversation._id, {message}, {withCredentials:true});
 
            
 
