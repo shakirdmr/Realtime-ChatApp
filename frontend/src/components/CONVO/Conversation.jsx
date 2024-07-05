@@ -30,6 +30,10 @@ const Conversation = ({ convo, index }) => {
                 <p className="font-bold text-gray-200">{convo.fullname}</p>
               </div>
             </div>
+
+            {/* <div class="bg-yellow-300 text-black  badge badge-primary badge-sm rounded-full">8</div> */}
+
+            
       </div>
 
       <div className="divider my-0 py-0 h-1" />

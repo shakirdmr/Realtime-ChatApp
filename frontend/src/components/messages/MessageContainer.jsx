@@ -33,8 +33,8 @@ const MessageContainer = (req, res) => {
 
 				<div className=" overflow-auto"> 
 					<div className='bg-slate-500 px-4 py-2 mb-2'>
-						<span className='label-text'>To:</span> <span className='text-gray-900 font-bold'>{selectedConversation?.fullname}</span>
-						<h6 style={{"fontSize":"10px"}}> {selectedConversation?._id}</h6>
+						<span className='label-text'></span> <span className='text-gray-900 font-bold'>{selectedConversation?.fullname}</span>
+						<h6 style={{"fontSize":"10px","color":"#e9e9e9"}}> @{selectedConversation?.username}</h6>
 					</div>
 
 					<Messages />

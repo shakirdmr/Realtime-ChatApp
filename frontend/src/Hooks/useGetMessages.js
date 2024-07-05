@@ -7,45 +7,40 @@ const useGetMessages = () => {
 
     const [loading, setLoading] = useState(false);
 
-    const {selectedConversation, setSelectedConversation, messages, setMessages} = useConversation();
+    const { selectedConversation, setSelectedConversation, messages, setMessages } = useConversation();
 
-    const getMessages = async ()=>{
+    const getMessages = async () => {
 
         try {
             setLoading(true);
-
             
-            
-            const response = await axios.get(`api/message/getMessages/${selectedConversation._id}` , {withCredentials:true});
-            
-
+            const response = await axios.get(`api/message/getMessages/${selectedConversation._id}`, { withCredentials: true });
 
             // console.log(response)
 
-            if(!response.data.result)
-                {
-                    // toast.error("we useGetMessage.js error - "+response.data.message);
-                    setMessages([]);
+            if (!response.data.result) {
+                // toast.error("we useGetMessage.js error - "+response.data.message);
+                setMessages([]);
 
-                    return;
-                }
-            
+                return;
+            }
+
             setMessages(response.data.message);
 
             // toast.success("GOT ALL MESSAGES");
-            
+
         } catch (error) {
-            toast.error("useGetMessage.js error - "+error.message);
-            
+            toast.error("useGetMessage.js error - " + error.message);
+
         }
-        finally{
+        finally {
 
             setLoading(false);
         }
 
     }
 
-  return  {getMessages, loading}
+    return { getMessages, loading }
 }
 
 export default useGetMessages

@@ -1,8 +1,8 @@
 import Home from "./pages/home/Home.jsx";
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Login from "./pages/login/Login.jsx";
-import Signup from "./pages/signup/Signup.jsx";
+import Login from "./pages/login/login.jsx";
+import Signup from "./pages/signup/signup.jsx";
 import {Toaster} from 'react-hot-toast';
 import axios from 'axios';
 import { useContext } from "react";
