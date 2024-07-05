@@ -10,15 +10,10 @@ const SearchInput = () => {
 
   const { convoToShow, setConvoToShow } = useConversation();
 
-  const [search, setSearch] = useState("");
-
+ 
   const searchForTheUser = (e) => {
     const searchValue = e.target.value;
-    setSearch(searchValue);
-
-    setSearch(e.target.value);
-
-    console.log(searchValue.length);
+    	
 
     if (searchValue.length < 1) {
       setConvoToShow(conversations);
@@ -26,7 +21,7 @@ const SearchInput = () => {
     }
 
     const convo = conversations.filter((c) =>
-      c.fullname.toLowerCase().includes(search.toLowerCase())
+      c.fullname.toLowerCase().startsWith(searchValue.toLowerCase())
     );
 
     setConvoToShow(convo);
@@ -40,7 +35,6 @@ const SearchInput = () => {
           placeholder="Search users ..."
           className="input input-bordered rounded-xl w-full pr-[35px]"
           maxLength={30}
-          value={search}
           onChange={(e) => {
             searchForTheUser(e);
           }}
