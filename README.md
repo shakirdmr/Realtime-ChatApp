@@ -1,6 +1,6 @@
 # MERN Stack Chat Application
 
-![Chat Application Screenshot](./images/app.png)
+![Chat Application Screenshot](./screenshots/app.png)
 
 This is a real-time chat application built using the MERN stack (MongoDB, Express.js, React, Node.js). It allows users to create chat rooms, join existing rooms, and communicate in real-time.
 
